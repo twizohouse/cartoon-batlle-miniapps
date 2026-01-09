@@ -1,14 +1,26 @@
-<div id="battlefield">
-  <div id="enemy">
-    👾 Враг
-    <div id="enemy-hp">HP: 50</div>
-  </div>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartoon Battle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  <div id="player">
-    🧙 Ты
-    <div id="player-hp">HP: 50</div>
-  </div>
+<div id="app">
+  <h1>🎮 Cartoon Battle</h1>
+  <p id="user">Загрузка...</p>
 
-  <button onclick="nextTurn()">▶️ Следующий ход</button>
-  <div id="log"></div>
+  <div id="battlefield">
+    <button onclick="nextTurn()">▶️ Следующий ход</button>
+    <div id="player-hp"></div>
+    <div id="enemy-hp"></div>
+    <div id="log"></div>
+  </div>
 </div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
