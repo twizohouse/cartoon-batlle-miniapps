@@ -1,4 +1,20 @@
-#enemy, #player {
+body {
+  margin: 0;
+  background: #1e1e2f;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  padding: 16px;
+  text-align: center;
+}
+
+#battlefield {
+  margin-top: 20px;
+}
+
+#player-hp, #enemy-hp {
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
@@ -8,4 +24,14 @@
 #log {
   margin-top: 15px;
   font-size: 14px;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: #ff9800;
+  color: #000;
+  cursor: pointer;
 }
