@@ -5,7 +5,6 @@ const logDiv = document.getElementById("log");
 const playerHpDiv = document.getElementById("player-hp");
 const enemyHpDiv = document.getElementById("enemy-hp");
 
-// Юниты с типами для синергий
 const playerUnits = [
   { name: "Бобо-Воин", hp: 40, damage: 6, type: "warrior" },
   { name: "Фаер-Имп", hp: 30, damage: 8, type: "mage" },
@@ -18,7 +17,7 @@ const enemyUnits = [
   { name: "Фрости", hp: 30, damage: 6, type: "mage" }
 ];
 
-// Считаем бонусы синергии
+// Функция для подсчета бонуса синергии
 function getSynergyBonus(units) {
   const count = {};
   units.forEach(u => {
@@ -27,13 +26,12 @@ function getSynergyBonus(units) {
 
   const bonus = {};
   for (let type in count) {
-    if (count[type] >= 2) bonus[type] = 1.1; // +10%
-    if (count[type] >= 3) bonus[type] = 1.2; // +20%
+    if (count[type] >= 2) bonus[type] = 1.1;
+    if (count[type] >= 3) bonus[type] = 1.2;
   }
   return bonus;
 }
 
-// Обновление HP на экране
 function updateUI() {
   playerHpDiv.innerHTML = playerUnits.map(u =>
     `${u.name}: ${Math.max(u.hp,0)} HP`
@@ -44,9 +42,9 @@ function updateUI() {
   ).join("<br>");
 }
 
-// Функция боя на один ход
-function nextTurn() {
-  if (playerUnits.every(u => u.hp <= 0) || enemyUnits.every(u => u.hp <= 0)) return;
+// Функция одного хода
+function performTurn() {
+  if (playerUnits.every(u => u.hp <= 0) || enemyUnits.every(u => e.hp <= 0)) return;
 
   const playerBonus = getSynergyBonus(playerUnits);
   const enemyBonus = getSynergyBonus(enemyUnits);
@@ -65,6 +63,7 @@ function nextTurn() {
 
   if (enemyUnits.every(e => e.hp <= 0)) {
     logDiv.innerHTML += `<p>🏆 Победа!</p>`;
+    clearInterval(autoBattle);
     updateUI();
     return;
   }
@@ -83,10 +82,13 @@ function nextTurn() {
 
   if (playerUnits.every(p => p.hp <= 0)) {
     logDiv.innerHTML += `<p>❌ Поражение</p>`;
+    clearInterval(autoBattle);
   }
 
   updateUI();
 }
 
-// Отображаем начальный HP
 updateUI();
+
+// Запускаем автоход каждые 1.2 секунды
+const autoBattle = setInterval(performTurn, 1200);
